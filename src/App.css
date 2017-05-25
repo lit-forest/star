@@ -1,0 +1,61 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 78px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 200ms ease;
+  backface-visibility: hidden;
+  background: #353535;
+}
+
+.logo {
+  position: relative;
+  z-index: 4;
+  display: inline-block;
+  margin: 20px;
+  width: 44px;
+  height: 38px;
+  text-indent: -9999px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(https://ui8.s3.amazonaws.com/v5/assets/global/logo.png);
+  background-size: 44px 38px;
+}
+
+.header-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0 0 0 85px;
+  padding: 0 20px 0 0px;
+  width: calc(100% - 85px);
+  height: 100%;
+  box-sizing: border-box;
+  transition: all 500ms ease;
+}
+
+.nav {
+  position: relative;
+  z-index: 4;
+  margin: 0 20px 0 0;
+  float: left;
+}
+
+.nav-item {
+  display: block;
+  float: left;
+  margin: 0 28px 0 0;
+  padding: 35px 0 0 0;
+  position: relative;
+}
+
+.nav-item-a {
+  display: block;
+  line-height: 1;
+  font-weight: 400;
+  color: #AFAFAF;
+  text-decoration: none;
+}
