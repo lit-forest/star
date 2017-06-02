@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import { getData } from 'api/app'
+
 class App extends Component {
+  componentDidMount() {
+    getData(1).then(data => {
+      console.log(data)
+    });
+
+  }
+
   render() {
     return (
       <header className="header">
