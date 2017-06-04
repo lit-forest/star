@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 
 import { getData } from 'api/app'
 
@@ -8,26 +8,23 @@ class App extends Component {
     getData(1).then(data => {
       console.log(data)
     });
-
   }
 
   render() {
     return (
-      <header className="header">
+      <header className='header'>
         <a href='/' className='logo'>
           <h1>home</h1>
         </a>
         <div className='header-section'>
           <ul className='nav'>
-            <li className='nav-item'><a href='/' className='nav-item-a'>All Products</a></li>
-            <li className='nav-item'><a href='/' className='nav-item-a'>UI Kits</a></li>
-            <li className='nav-item'><a href='/' className='nav-item-a'>Wireframe Kits</a></li>
-            <li className='nav-item'><a href='/' className='nav-item-a'>For Sketch</a></li>
-            <li className='nav-item'><a href='/' className='nav-item-a'>Icons</a></li>
-            <li className='nav-item'><a href='/' className='nav-item-a'>Fonts</a></li>
-            <li className='nav-item'><a href='/' className='nav-item-a'>Mockups</a></li>
-            <li className='nav-item'><a href='/' className='nav-item-a'>Presentation</a></li>
-            <li className='nav-item'><a href='/' className='nav-item-a'>Icons</a></li>
+            <li className='nav-item'><a href='/' className='nav-item-a'>首页</a></li>
+            <li className='nav-item'><a href='/' className='nav-item-a'>产品中心</a></li>
+            <li className='nav-item'><a href='/' className='nav-item-a'>解决方案</a></li>
+            <li className='nav-item'><a href='/' className='nav-item-a'>服务支持</a></li>
+            <li className='nav-item'><a href='/' className='nav-item-a'>关于我们</a></li>
+            <li className='nav-item'><a href='/' className='nav-item-a'>新闻中心</a></li>
+            <li className='nav-item'><a href='/' className='nav-item-a'>供应商平台</a></li>
           </ul>
         </div>
       </header>
