@@ -53,6 +53,7 @@ module.exports = {
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
   appComponents: resolveApp('src/components'),
+  appContainers: resolveApp('src/containers'),
   appApi: resolveApp('src/api'),
   appMock: resolveApp('mock'),
   appImg: resolveApp('src/assets/img'),

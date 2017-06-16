@@ -1,22 +1,27 @@
-import Home from '../containers/home';
-import Product from '../containers/product';
-import Solution from '../containers/solution';
+import Layout from '../layout/layout';
+import Home from './home';
+import Product from './product';
+import Solution from './solution';
 
-const routes = [{
-    component: Home,
-    routes: [{
-        path: '/',
-        exact: true,
-        component: Home
-    }, {
-        path: '/product',
-        exact: true,
-        component: Home
-    }, {
-        path: '/solution',
-        exact: true,
-        component: Home
-    }]
-}]
+const routes = [
+    {
+        component: Layout,
+        routes: [
+            {
+                path: '/home',
+                exact: true,
+                component: Home
+            }, {
+                path: '/product',
+                exact: true,
+                component: Product
+            }, {
+                path: '/solution',
+                exact: true,
+                component: Solution
+            }
+        ]
+    }
+]
 
 export default routes;

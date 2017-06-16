@@ -4,15 +4,15 @@ function get(url, params) {
     return axios.get(url, { params })
         .then(checkStatus)
         .then(checkFileType)
-        .then(checkCode)
-        .catch(throwErr)
+        //.then(checkCode)
+        .catch(updateErr)
 }
 function post(url, params) {
-    return axios.post(url, { params })
+    return axios.post(url, params)
         .then(checkStatus)
         .then(checkFileType)
-        .then(checkCode)
-        .catch(throwErr)
+        //.then(checkCode)
+        .catch(updateErr)
 }
 function checkStatus(res) {
     if (res.status >= 200 && res.status < 300) {
@@ -52,7 +52,7 @@ function handleError(code, res = '') {
     throw error;
 }
 
-function throwErr(res) {
+function updateErr(res) {
     console.log(res)
 }
 

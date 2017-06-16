@@ -8,6 +8,7 @@
   transition: all 200ms ease;
   backface-visibility: hidden;
   background: #353535;
+  z-index: 1000;
 }
 
 .logo {
@@ -18,11 +19,7 @@
   width: 44px;
   height: 38px;
   text-indent: -9999px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: url(https://ui8.s3.amazonaws.com/v5/assets/global/logo.png);
-  background-size: 44px 38px;
+  background: url(https://s3-us-west-1.amazonaws.com/ui8/v5/new-assets/ui8.svg) no-repeat 0 0/44px 38px;
 }
 
 .header-section {
@@ -59,4 +56,7 @@
   color: #AFAFAF;
   text-decoration: none;
   font-size: 13px;
+}
+.selected{
+  color: #fff;
 }

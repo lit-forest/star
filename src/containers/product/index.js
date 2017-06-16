@@ -1,13 +1,29 @@
-import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import Product from './product';
+import { getData, getPois } from 'api/app';
 
-class Product extends Component {
-    render() {
-        return (
-            <div>
-                <h1>Product</h1>
-            </div>
-        );
+const mapStateToProps = (state, ownProps) => {
+    return {
+        data: state.product
     }
 }
 
-export default Product;
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        searchPois: (params) => {
+            dispatch({
+                type: 'SEARCH_POIS',
+                payload: getPois(params)
+            })
+        },
+        sub: () => {
+            dispatch({
+                type: 'SEARCH_POIS',
+                payload: getData()
+            })
+        }
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product)

@@ -48,6 +48,7 @@ module.exports = {
     alias: {
       'react-native': 'react-native-web',
       'cps': paths.appComponents,
+      'cts': paths.appContainers,
       'api': paths.appApi,
       'img': paths.appImg,
       'utils': paths.appUtils
@@ -135,12 +136,43 @@ module.exports = {
           },
         ],
       },
+      // {
+      //   test: /\.scss?$/,
+      //   use: ExtractTextPlugin.extract({
+      //     fallback: 'style-loader',
+      //     use: [
+      //       {
+      //         loader: 'css-loader',
+      //       },
+      //       {
+      //         loader: 'postcss-loader',
+      //         options: {
+      //           plugins: [require('autoprefixer')({
+      //             broswers: ['last 3 version', 'ie >= 10']
+      //           })]
+      //           // postcss: function(){
+      //           //    return [
+      //           //       require('autoprefixer')({
+      //           //          broswers: ['last 3 version', 'ie >= 10']
+      //           //       }),
+      //           //    ]
+      //           // }
+      //         }
+      //       },
+      //       {
+      //         loader: 'sass-loader',
+
+      //       }]
+
+      //   })
+      // }
       {
         test: /\.(sass|scss)$/,
         use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
           use: [
             {
-              loader: require.resolve('css-loader'),
+              loader: 'css-loader',
               options: {
                 importLoaders: 1,
                 sourceMap: true
@@ -189,6 +221,8 @@ module.exports = {
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new ExtractTextPlugin({
       filename: cssFilename,
+      allChunks: true
+
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor",
