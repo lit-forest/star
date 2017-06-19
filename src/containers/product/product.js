@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './product.scss';
+import styles from './product.scss';
 
 class Product extends Component {
     constructor(props, context) {
@@ -31,7 +31,7 @@ class Product extends Component {
         const { data } = this.props;
         console.log(data)
         return (
-            <main className='root'>
+            <main className={styles.root}>
                 <label>搜索关键字：</label>
                 <input type='text' name='keywords' onChange={this.inputChange} />
                 <br />

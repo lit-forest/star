@@ -75,30 +75,6 @@ module.exports = {
         include: paths.appSrc,
       },
       {
-        exclude: [
-          /\.html$/,
-          /\.(js|jsx)$/,
-          /\.css$/,
-          /\.json$/,
-          /\.bmp$/,
-          /\.gif$/,
-          /\.jpe?g$/,
-          /\.png$/,
-        ],
-        loader: require.resolve('file-loader'),
-        options: {
-          name: 'static/media/[name].[hash:8].[ext]',
-        },
-      },
-      {
-        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-        loader: require.resolve('url-loader'),
-        options: {
-          limit: 10000,
-          name: 'static/media/[name].[hash:8].[ext]',
-        },
-      },
-      {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
         loader: require.resolve('babel-loader'),
@@ -108,75 +84,35 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          require.resolve('style-loader'),
-          {
-            loader: require.resolve('css-loader'),
-            options: {
-              importLoaders: 1,
-            },
-          },
-          {
-            loader: require.resolve('postcss-loader'),
-            options: {
-              ident: 'postcss',
-              plugins: () => [
-                require('postcss-flexbugs-fixes'),
-                autoprefixer({
-                  browsers: [
-                    '>1%',
-                    'last 4 versions',
-                    'Firefox ESR',
-                    'not ie < 9',
-                  ],
-                  flexbox: 'no-2009',
-                }),
-              ],
-            },
-          },
-        ],
-      },
-      // {
-      //   test: /\.scss?$/,
-      //   use: ExtractTextPlugin.extract({
-      //     fallback: 'style-loader',
-      //     use: [
-      //       {
-      //         loader: 'css-loader',
-      //       },
-      //       {
-      //         loader: 'postcss-loader',
-      //         options: {
-      //           plugins: [require('autoprefixer')({
-      //             broswers: ['last 3 version', 'ie >= 10']
-      //           })]
-      //           // postcss: function(){
-      //           //    return [
-      //           //       require('autoprefixer')({
-      //           //          broswers: ['last 3 version', 'ie >= 10']
-      //           //       }),
-      //           //    ]
-      //           // }
-      //         }
-      //       },
-      //       {
-      //         loader: 'sass-loader',
-
-      //       }]
-
-      //   })
-      // }
-      {
-        test: /\.(sass|scss)$/,
+        exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
             {
               loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-                sourceMap: true
-              },
+              query: {
+                modules: true,
+                localIdentName: '[name]__[local]___[hash:base64:5]'
+              }
+            },
+            'postcss-loader'
+          ]
+        }),
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              query: {
+                modules: true,
+                sourceMap: true,
+                importLoaders: 2,
+                localIdentName: '[name]_[local]_[hash:base64:5]'
+              }
             },
             {
               loader: 'postcss-loader',
@@ -204,7 +140,15 @@ module.exports = {
               }
             }
           ]
-        })
+        }),
+      },
+      {
+        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+        loader: require.resolve('url-loader'),
+        options: {
+          limit: 10000,
+          name: 'static/media/[name].[hash:8].[ext]',
+        },
       },
     ],
   },
@@ -222,7 +166,6 @@ module.exports = {
     new ExtractTextPlugin({
       filename: cssFilename,
       allChunks: true
-
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor",

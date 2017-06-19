@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './solution.scss';
+import styles from './solution.scss';
 
 class Solutions extends Component {
     render() {
         return (
-            <mian className='root'>
+            <mian className={styles.root}>
                 <h1>Solutions</h1>
             </mian>
         );
