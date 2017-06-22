@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Product from './product';
-import { getData, getPois } from 'api/app';
+import { getData, getPois, getDataTest, getDataHelloKitty } from 'api/app';
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         sub: () => {
             dispatch({
                 type: 'SEARCH_POIS',
-                payload: getData()
+                payload: getDataHelloKitty()
             })
         }
     }

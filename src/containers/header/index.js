@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import LoadingBar from 'react-redux-loading-bar';
 
-//import './header.scss';
-
 import styles from './header.scss';
 
 class Header extends Component {

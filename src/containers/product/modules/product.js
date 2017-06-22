@@ -18,9 +18,10 @@ const initialState = {
     error: null
 }
 export default function getPois(state = initialState, action) {
+    console.log(action.type)
     switch (action.type) {
         case SEARCH_POIS_PENDING:
-            return { ...state, fetching: true };
+            return { ...state, fetching: true, fetched: false };
         case SEARCH_POIS_REJECTED:
             return { ...state, fetching: false, error: action.payload };
         case SEARCH_POIS_FULFILLED:
