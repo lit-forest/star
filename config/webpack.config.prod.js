@@ -55,7 +55,9 @@ module.exports = {
     ),
     extensions: ['.js', '.json', '.jsx'],
     alias: {
+      'react-native': 'react-native-web',
       'cps': paths.appComponents,
+      'cts': paths.appContainers,
       'api': paths.appApi,
       'img': paths.appImg,
       'utils': paths.appUtils
@@ -80,30 +82,6 @@ module.exports = {
           },
         ],
         include: paths.appSrc,
-      },
-      {
-        exclude: [
-          /\.html$/,
-          /\.(js|jsx)$/,
-          /\.css$/,
-          /\.json$/,
-          /\.bmp$/,
-          /\.gif$/,
-          /\.jpe?g$/,
-          /\.png$/,
-        ],
-        loader: require.resolve('file-loader'),
-        options: {
-          name: 'static/media/[name].[hash:8].[ext]',
-        },
-      },
-      {
-        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-        loader: require.resolve('url-loader'),
-        options: {
-          limit: 10000,
-          name: 'static/media/[name].[hash:8].[ext]',
-        },
       },
       {
         test: /\.(js|jsx)$/,
@@ -151,15 +129,19 @@ module.exports = {
         ),
       },
       {
-        test: /\.(sass|scss)$/,
+        test: /\.scss$/,
+        exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
           use: [
             {
-              loader: require.resolve('css-loader'),
-              options: {
-                importLoaders: 1,
-                sourceMap: true
-              },
+              loader: 'css-loader',
+              query: {
+                modules: true,
+                sourceMap: true,
+                importLoaders: 2,
+                localIdentName: '[name]_[local]_[hash:base64:5]'
+              }
             },
             {
               loader: 'postcss-loader',
@@ -187,7 +169,14 @@ module.exports = {
               }
             }
           ]
-        })
+        }),
+      }, {
+        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+        loader: require.resolve('url-loader'),
+        options: {
+          limit: 10000,
+          name: 'static/media/[name].[hash:8].[ext]',
+        },
       },
     ],
   },

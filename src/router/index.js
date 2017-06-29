@@ -1,3 +1,4 @@
+import React from 'react';
 import Layout from '../layout/layout';
 import Home from './home';
 import Product from './product';
@@ -19,6 +20,10 @@ const routes = [
                 path: '/solution',
                 exact: true,
                 component: Solution
+            }, {
+                path: '/1',
+                exact: true,
+                render: () => <h1>hello 1</h1>
             }
         ]
     }
