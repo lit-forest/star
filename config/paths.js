@@ -10,7 +10,6 @@ const appDirectory = fs.realpathSync(process.cwd());
 
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
-console.log(resolveApp('.env'))
 const envPublicUrl = process.env.PUBLIC_URL;
 
 function ensureSlash(path, needsSlash) {

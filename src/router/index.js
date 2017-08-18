@@ -9,10 +9,11 @@ const routes = [
         component: Layout,
         routes: [
             {
-                path: '/home',
+                path: '/',
                 exact: true,
                 component: Home
-            }, {
+            },
+            {
                 path: '/product',
                 exact: true,
                 component: Product

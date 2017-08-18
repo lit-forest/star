@@ -5,6 +5,12 @@ import LoadingBar from 'react-redux-loading-bar';
 import styles from './header.scss';
 
 class Header extends Component {
+    constructor() {
+        super();
+        this.state = {
+            val: 0
+        }
+    }
     render() {
         return (
             <header className={styles.header}>
@@ -15,7 +21,7 @@ class Header extends Component {
                 <div className={styles.section}>
                     <ul className={styles.nav}>
                         <li className={styles.nav_item}>
-                            <NavLink to='/home' activeClassName={styles.selected} className={styles.nav_item_a}>首页</NavLink>
+                            <NavLink to='/' activeClassName={styles.selected} className={styles.nav_item_a}>首页</NavLink>
                         </li>
                         <li className={styles.nav_item}>
                             <NavLink to='/product' activeClassName={styles.selected} className={styles.nav_item_a}>产品中心</NavLink>
@@ -39,6 +45,38 @@ class Header extends Component {
                 </div>
             </header>
         );
+    }
+    componentDidMount() {
+
+        this.setState({
+            val: this.state.val + 1
+        })
+        console.log(this.state.val);   //0
+
+        this.setState(() => {
+            return {
+                val: this.state.val + 1
+            }
+        })
+        console.log(this.state.val)    //0
+
+        setTimeout(() => {
+            this.setState(() => {
+                return {
+                    val: this.state.val + 1
+                }
+            })
+            console.log(this.state.val)
+
+            this.setState({
+                val: this.state.val + 1
+            })
+            console.log(this.state.val);  //2
+            this.setState({
+                val: this.state.val + 1
+            })
+            console.log(this.state.val);   //3
+        }, 0);
     }
 }
 

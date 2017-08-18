@@ -18,7 +18,6 @@ const initialState = {
     error: null
 }
 export default function getPois(state = initialState, action) {
-    console.log(action.type)
     switch (action.type) {
         case SEARCH_POIS_PENDING:
             return { ...state, fetching: true, fetched: false };
