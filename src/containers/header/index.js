@@ -21,7 +21,7 @@ class Header extends Component {
                 <div className={styles.section}>
                     <ul className={styles.nav}>
                         <li className={styles.nav_item}>
-                            <NavLink to='/' activeClassName={styles.selected} className={styles.nav_item_a}>首页</NavLink>
+                            <NavLink to='/' exact={true} activeClassName={styles.selected} className={styles.nav_item_a}>首页</NavLink>
                         </li>
                         <li className={styles.nav_item}>
                             <NavLink to='/product' activeClassName={styles.selected} className={styles.nav_item_a}>产品中心</NavLink>
