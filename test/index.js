@@ -1,9 +1,10 @@
 import { connect } from 'react-redux'
 import component from 'componentPath'
-import {actionCreator} from 'actionCreatorPath'
+import { actionCreator } from 'actionCreatorPath'
 
 const mapStateToProps = (state, ownProps) => {
     return {
+        a: 1,
         prop: state.prop
     }
 }
