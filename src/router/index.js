@@ -3,6 +3,8 @@ import Layout from '../layout/layout';
 import Home from './home';
 import Product from './product';
 import Solution from './solution';
+import Support from './support';
+import About from './about';
 
 const routes = [
     {
@@ -22,9 +24,14 @@ const routes = [
                 exact: true,
                 component: Solution
             }, {
-                path: '/1',
+                path: '/support',
                 exact: true,
-                render: () => <h1>hello 1</h1>
+                component: Support
+            },
+            {
+                path: '/about',
+                exact: true,
+                component: About
             }
         ]
     }

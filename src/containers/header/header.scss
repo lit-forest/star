@@ -8,6 +8,7 @@
     transition: all 200ms ease;
     backface-visibility: hidden;
     background: #353535;
+    // background: url('../../assets/img/purple-blue.png') no-repeat top center,linear-gradient(to right, #502070 0%, #2f3c90 100%);
     z-index: 1000;
     .logo {
         position: relative;
@@ -59,4 +60,5 @@
 
 .selected {
     color: #fff;
+    text-decoration:none;
 }

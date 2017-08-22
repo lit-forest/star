@@ -21,6 +21,13 @@ const cssFilename = 'static/css/[name].[contenthash:8].css';
 
 const env = getClientEnvironment(publicUrl);
 
+const shouldUseRelativeAssetPaths = publicPath === './';
+
+const extractTextPluginOptions = shouldUseRelativeAssetPaths
+?
+{ publicPath: Array(cssFilename.split('/').length).join('../') }
+: {};
+
 module.exports = {
   devtool: 'cheap-module-source-map',
   entry: {
@@ -85,19 +92,42 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
+        use: ExtractTextPlugin.extract(
+          Object.assign(
             {
-              loader: 'css-loader',
-              query: {
-                modules: true,
-                localIdentName: '[name]__[local]___[hash:base64:5]'
-              }
+              fallback: require.resolve('style-loader'),
+              use: [
+                {
+                  loader: require.resolve('css-loader'),
+                  options: {
+                    importLoaders: 1,
+                    minimize: true,
+                    sourceMap: true,
+                  },
+                },
+                {
+                  loader: require.resolve('postcss-loader'),
+                  options: {
+                    ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
+                    plugins: () => [
+                      require('postcss-flexbugs-fixes'),
+                      autoprefixer({
+                        browsers: [
+                          '>1%',
+                          'last 4 versions',
+                          'Firefox ESR',
+                          'not ie < 9', // React doesn't support IE8 anyway
+                        ],
+                        flexbox: 'no-2009',
+                      }),
+                    ],
+                  },
+                },
+              ],
             },
-            'postcss-loader'
-          ]
-        }),
+            extractTextPluginOptions
+          )
+        ),
       },
       {
         test: /\.scss$/,
