@@ -29,6 +29,11 @@ class Home extends Component {
             </div>
         );
     }
+    componentDidMount() {
+        var testA = null;
+        let testB = testA.HelloErr;
+        console.log(testA.length.Word)
+    }
 }
 
 Home.propTypes = {

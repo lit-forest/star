@@ -31,7 +31,7 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
 module.exports = {
   devtool: 'cheap-module-source-map',
   entry: {
-    vendor: ['react', 'react-dom', require.resolve('./polyfills')],
+    vendor: ['react', 'react-dom', 'react-redux', 'react-router-dom', 'react-router-redux', 'react-router-config', 'react-router', require.resolve('./polyfills')],
     app: [
       require.resolve('react-dev-utils/webpackHotDevClient'),
       paths.appIndexJs,

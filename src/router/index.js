@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../layout/layout';
-import Home from './home';
+import Home from '../containers/home';
 import Product from './product';
 import Solution from './solution';
 import Support from './support';

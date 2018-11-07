@@ -36,15 +36,15 @@ module.exports = {
   bail: true,
   devtool: 'source-map',
   entry: {
-    vendor: ['react', 'react-dom', require.resolve('./polyfills')],
     app: [
+      require.resolve('./polyfills'),
       paths.appIndexJs
     ]
   },
   output: {
     path: paths.appBuild,
-    filename: 'static/js/[name].[chunkhash:8].js',
-    chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
+    filename: 'static/js/[name].[chunkhash:9].js',
+    chunkFilename: 'static/js/[name].[chunkhash:9].chunk.js',
     publicPath: publicPath,
     devtoolModuleFilenameTemplate: info =>
       path.relative(paths.appSrc, info.absoluteResourcePath),
@@ -231,10 +231,9 @@ module.exports = {
       stripPrefix: paths.appBuild.replace(/\\/g, '/') + '/',
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "vendor",
-      filename: "static/js/vendor.js",
-      minChunks: Infinity,
+    new webpack.DllReferencePlugin({
+      context: path.resolve(__dirname, "dll"),
+      manifest: require("../build/dll/vendor-manifest.json")
     }),
   ],
   node: {
